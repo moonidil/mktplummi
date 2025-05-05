@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <title>Plummi</title>
+  <style>
+    /* Color variables */
+    :root {
+      --primary-color: #F8A39D;
+      --text-color: #000000;
+      --bg-color: #E5E5E5;
+    }
+
+    @font-face {
+      font-family: 'San Francisco';
+      font-style: normal;
+      font-weight: 400;
+      src: local('San Francisco'),
+           url('https://apple-fonts.s3.amazonaws.com/sf-pro/SF-Pro-Display-Regular.otf') format('opentype');
+    }
+
+    body {
+      margin: 0;
+      font-family: 'San Francisco', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+      color: var(--text-color);
+      background-color: var(--bg-color);
+      position: relative;
+      overflow-x: hidden;
+    }
+
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 30px;
+      background-color: rgba(248, 163, 157, 0.2);
+      color: var(--text-color);
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      position: fixed;
+      top: 0;
+      width: 100%;
+      z-index: 1000;
+      backdrop-filter: blur(10px);
+      font-size: 14px;
+    }
+    .logo img {
+      width: 200px;
+      height: auto;
+      cursor: pointer;
+    }
+    header .nav-links {
+      display: flex;
+      gap: 20px;
+    }
+    header .nav-links a {
+      color: var(--text-color);
+      text-decoration: none;
+      font-size: 16px;
+      transition: color 0.3s ease;
+    }
+    header .nav-links a:hover {
+      color: var(--primary-color);
+    }
+
+    .spacer {
+      height: 60px;
+      background: transparent;
+    }
+
+    .section {
+      text-align: center;
+      padding: 150px 30px;
+      background-color: var(--bg-color);
+      color: var(--text-color);
+      margin: 50px auto;
+      max-width: 90%;
+      border-radius: 30px;
+      position: relative;
+      transition: transform 0.8s ease-in-out;
+    }
+    .section::before {
+      content: "";
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      border-radius: 30px;
+      box-shadow: 0 0 8px 2px rgba(248, 163, 157, 0.3);
+      z-index: -1;
+      pointer-events: none;
+    }
+    .section h2, .section h3 {
+      font-size: 42px;
+      margin-bottom: 30px;
+    }
+    .section p {
+      font-size: 20px;
+      max-width: 800px;
+      margin: 0 auto;
+      line-height: 1.8;
+    }
+
+    .hero h2 {
+      font-size: 32px;
+      font-weight: bold;
+      color: var(--text-color);
+    }
+
+    .button {
+      display: inline-block;
+      margin: 20px;
+      padding: 12px 50px;
+      font-size: 18px;
+      border: 2px solid var(--primary-color);
+      border-radius: 50px;
+      text-decoration: none;
+      color: var(--text-color);
+      background-color: transparent;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 10px var(--primary-color);
+    }
+    .button:hover {
+      background-color: var(--primary-color);
+      color: var(--text-color);
+    }
+
+    .what-we-do {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-around;
+      padding: 120px;
+      background-color: var(--bg-color);
+      color: var(--text-color);
+      border-radius: 30px;
+      position: relative;
+    }
+    .what-we-do h3 {
+      position: absolute;
+      top: 20px;
+      left: 40px;
+      font-size: 48px;
+      font-weight: bold;
+      margin: 0;
+    }
+    .what-we-do .bullet-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-evenly;
+    }
+    .what-we-do .bullet {
+      flex: 1;
+      margin: 20px;
+      text-align: left;
+    }
+    .what-we-do .bullet h4 {
+      font-size: 28px;
+      margin-bottom: 10px;
+    }
+    .what-we-do .bullet p {
+      font-size: 20px;
+      line-height: 1.8;
+    }
+
+    .plummi div[style*="background-color"] {
+      background-color: var(--primary-color) !important;
+    }
+
+    .contact {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      padding: 140px;
+      background-color: var(--bg-color);
+      color: var(--text-color);
+      border-radius: 20px;
+      position: relative;
+    }
+    .contact h3 {
+      font-size: 42px;
+      text-align: left;
+      margin-bottom: 30px;
+    }
+    .contact .left, .contact .right {
+      flex: 1;
+      margin: 40px;
+    }
+    .contact .left p {
+      font-size: 20px;
+      margin: 20px 0;
+    }
+    .contact .right {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+    }
+    .contact .subscribe {
+      display: flex;
+      align-items: center;
+      margin-top: 40px;
+    }
+    .contact input[type="email"] {
+      padding: 12px;
+      font-size: 18px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      margin-right: 10px;
+      flex: 1;
+    }
+    .contact button {
+      padding: 12px 25px;
+      background-color: var(--primary-color);
+      border: none;
+      color: var(--text-color);
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    .contact .social-media a {
+      text-decoration: underline;
+      color: var(--text-color);
+      font-size: 18px;
+      margin-right: 10px;
+    }
+
+    footer {
+      text-align: center;
+      padding: 20px;
+      background-color: var(--bg-color);
+      color: var(--text-color);
+      font-size: 16px;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="logo" onclick="scrollToSection('home')">
+      <img src="assets/plumlogo.png" alt="Plummi Logo" width="200" height="200" />
+    </div>
+    <nav>
+      <div class="nav-links">
+        <a href="#plummi" onclick="scrollToSection('plummi')">Plummi</a>
+        <a href="#what-we-do" onclick="scrollToSection('what-we-do')">What We Do</a>
+        <a href="#contact" onclick="scrollToSection('contact')">Contact Us</a>
+      </div>
+    </nav>
+  </header>
+
+  <div class="spacer"></div>
+
+  <!-- FIRST SECTION: Large Plummi logo -->
+  <section id="home" style="text-align:center; margin:80px auto; padding:100px 0;">
+    <div style="margin-bottom:20px;">
+      <img src="assets/plumlogo.png" alt="Plummi Logo" width="150" height="150" />
+    </div>
+    <h2 style="font-size:48px; margin:0; font-weight:normal; color: var(--text-color);">Plummi</h2>
+
+    <div>
+      <a href="#what-we-do" class="button" onclick="scrollToSection('what-we-do')">Learn More</a>
+      <a href="#contact" class="button" onclick="scrollToSection('contact')">Get Started</a>
+    </div>
+  </section>
+
+  <!-- SECOND SECTION: Hero text only -->
+  <section id="intro" class="section hero" style="padding-top:80px; padding-bottom:80px;">
+    <h2>
+      The future of seamless business oriented software, automated solutions for complex problems, 
+      and easy to use, sleek UI design and experience
+    </h2>
+  </section>
+
+  <!-- PROJECTS section (Plummi) -->
+  <section id="plummi" class="section plummi">
+    <h3>Projects</h3>
+    <div style="display: flex; align-items: flex-start; justify-content: center; gap: 30px;">
+      <div style="max-width: 500px; text-align: left;">
+        <p>
+          Plummi a software designed to help care companies commit to easy care and
+          help automate processes with optimised features:
+        </p>
+        <ul style="list-style-type: disc; margin-top: 15px; padding-left: 40px; color: var(--text-color);">
+          <li>Geo-location punch in and out</li>
+          <li>Feedback system for carers</li>
+          <li>Automatic shift recommendation for carers</li>
+        </ul>
+      </div>
+      <div style="
+        width: 120px; 
+        height: 120px;
+        background-color: var(--primary-color);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: var(--text-color);
+        font-weight: bold;
+      ">
+        Plummi
+      </div>
+    </div>
+
+    <div style="margin-top: 30px;">
+      <a class="button" href="#" onclick="alert('Applying!');">Apply Now!</a>
+    </div>
+  </section>
+
+  <!-- WHAT WE DO -->
+  <section id="what-we-do" class="section what-we-do">
+    <h3>What We Do</h3>
+    <div class="bullet-container">
+      <div class="bullet">
+        <h4>01.</h4>
+        <p>Find solutions to pressing issues in the industry</p>
+      </div>
+      <div class="bullet">
+        <h4>02.</h4>
+        <p>Curate and enhance an easy user experience with sleek UI</p>
+      </div>
+      <div class="bullet">
+        <h4>03.</h4>
+        <p>Help businesses grow and expand with cutting-edge yet easy-to-use software</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact" class="section contact">
+    <div class="left">
+      <h3>Contact Us</h3>
+      <p>
+        For any inquiries, please email
+        <a href="mailto:contact@plummi.com" style="color: var(--text-color);">contact@plummi.com</a>.
+      </p>
+    </div>
+    <div class="right">
+      <div class="subscribe">
+        <input type="email" id="email" placeholder="Enter your email">
+        <button type="button">Subscribe</button>
+      </div>
+      <div class="social-media">
+        <!-- Social links & icons here if needed -->
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    &copy; 2025 Plummi. All rights reserved.
+  </footer>
+
+  <script>
+    function scrollToSection(sectionId) {
+      document.getElementById(sectionId).scrollIntoView({
+        behavior: 'smooth',
+        block: 'center'
+      });
+    }
+  </script>
+</body>
+</html>
