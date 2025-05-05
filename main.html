@@ -12,17 +12,21 @@
       --bg-color: #E5E5E5;
     }
 
+    html {
+      scroll-behavior: smooth;
+    }
+
+    /* League Spartan font */
     @font-face {
-      font-family: 'San Francisco';
-      font-style: normal;
-      font-weight: 400;
-      src: local('San Francisco'),
-           url('https://apple-fonts.s3.amazonaws.com/sf-pro/SF-Pro-Display-Regular.otf') format('opentype');
+      font-family: 'League Spartan';
+      src: url('assets/League_Spartan 5/static/LeagueSpartan-VariableFont_wght.ttf') format('truetype');
+      font-weight: 100 900;
+      font-display: swap;
     }
 
     body {
       margin: 0;
-      font-family: 'San Francisco', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+      font-family: 'League Spartan', sans-serif;
       color: var(--text-color);
       background-color: var(--bg-color);
       position: relative;
@@ -33,41 +37,47 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 10px 30px;
+      padding: 5px 20px;
       background-color: rgba(248, 163, 157, 0.2);
-      color: var(--text-color);
       box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      backdrop-filter: blur(10px);
       position: fixed;
       top: 0;
       width: 100%;
       z-index: 1000;
-      backdrop-filter: blur(10px);
-      font-size: 14px;
     }
+
     .logo img {
-      width: 200px;
+      width: 60px;
       height: auto;
       cursor: pointer;
     }
+
     header .nav-links {
       display: flex;
-      gap: 20px;
+      gap: 12px;
+      margin-right: 10px;
     }
+
     header .nav-links a {
       color: var(--text-color);
       text-decoration: none;
-      font-size: 16px;
+      font-size: 14px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
       transition: color 0.3s ease;
     }
+
     header .nav-links a:hover {
       color: var(--primary-color);
     }
 
     .spacer {
-      height: 60px;
+      height: 56px;
       background: transparent;
     }
 
+    /* Section styling */
     .section {
       text-align: center;
       padding: 150px 30px;
@@ -233,12 +243,11 @@
 <body>
   <header>
     <div class="logo" onclick="scrollToSection('home')">
-      <img src="assets/plumlogo.png" alt="Plummi Logo" width="200" height="200" />
+      <img src="assets/plumlogo.png" alt="Plummi Logo" width="60" />
     </div>
     <nav>
       <div class="nav-links">
-        <a href="#plummi" onclick="scrollToSection('plummi')">Plummi</a>
-        <a href="#what-we-do" onclick="scrollToSection('what-we-do')">What We Do</a>
+        <a href="#plummi" onclick="scrollToSection('plummi')">Our Service</a>
         <a href="#contact" onclick="scrollToSection('contact')">Contact Us</a>
       </div>
     </nav>
@@ -254,72 +263,47 @@
     <h2 style="font-size:48px; margin:0; font-weight:normal; color: var(--text-color);">Plummi</h2>
 
     <div>
-      <a href="#what-we-do" class="button" onclick="scrollToSection('what-we-do')">Learn More</a>
+      <a href="#plummi" class="button" onclick="scrollToSection('plummi')">Learn More</a>
       <a href="#contact" class="button" onclick="scrollToSection('contact')">Get Started</a>
     </div>
   </section>
 
-  <!-- SECOND SECTION: Hero text only -->
-  <section id="intro" class="section hero" style="padding-top:80px; padding-bottom:80px;">
-    <h2>
-      The future of seamless business oriented software, automated solutions for complex problems, 
-      and easy to use, sleek UI design and experience
-    </h2>
-  </section>
+<!-- PROJECTS section (Plummi) -->
+<section id="plummi" class="section plummi">
+  <h3>Our Service</h3>
+  <div style="display: flex; align-items: flex-start; justify-content: center; gap: 30px;">
+    <div style="max-width: 500px; text-align: left;">
+      <p>
+        Plummi is software designed to help care companies commit to easy care and
+        help automate processes with optimised features:
+      </p>
 
-  <!-- PROJECTS section (Plummi) -->
-  <section id="plummi" class="section plummi">
-    <h3>Projects</h3>
-    <div style="display: flex; align-items: flex-start; justify-content: center; gap: 30px;">
-      <div style="max-width: 500px; text-align: left;">
-        <p>
-          Plummi a software designed to help care companies commit to easy care and
-          help automate processes with optimised features:
-        </p>
-        <ul style="list-style-type: disc; margin-top: 15px; padding-left: 40px; color: var(--text-color);">
-          <li>Geo-location punch in and out</li>
-          <li>Feedback system for carers</li>
-          <li>Automatic shift recommendation for carers</li>
-        </ul>
-      </div>
-      <div style="
-        width: 120px; 
-        height: 120px;
-        background-color: var(--primary-color);
-        border-radius: 50%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        color: var(--text-color);
-        font-weight: bold;
-      ">
-        Plummi
-      </div>
     </div>
+  </div>
 
-    <div style="margin-top: 30px;">
-      <a class="button" href="#" onclick="alert('Applying!');">Apply Now!</a>
+  <!-- Stretched What We Do bullets across full section width -->
+  <div class="bullet-container" style="display: flex; justify-content: space-between; flex-wrap: wrap; margin: 40px 0;">
+    <div class="bullet" style="flex: 1; margin: 0 10px; text-align: left;">
+      <h4>01.</h4>
+      <p>Find solutions to pressing issues in the industry</p>
     </div>
-  </section>
+    <div class="bullet" style="flex: 1; margin: 0 10px; text-align: left;">
+      <h4>02.</h4>
+      <p>Curate and enhance an easy user experience with sleek UI</p>
+    </div>
+    <div class="bullet" style="flex: 1; margin: 0 10px; text-align: left;">
+      <h4>03.</h4>
+      <p>Help businesses grow and expand with cutting-edge yet easy-to-use software</p>
+    </div>
+  </div>
 
-  <!-- WHAT WE DO -->
-  <section id="what-we-do" class="section what-we-do">
-    <h3>What We Do</h3>
-    <div class="bullet-container">
-      <div class="bullet">
-        <h4>01.</h4>
-        <p>Find solutions to pressing issues in the industry</p>
-      </div>
-      <div class="bullet">
-        <h4>02.</h4>
-        <p>Curate and enhance an easy user experience with sleek UI</p>
-      </div>
-      <div class="bullet">
-        <h4>03.</h4>
-        <p>Help businesses grow and expand with cutting-edge yet easy-to-use software</p>
-      </div>
-    </div>
-  </section>
+  <div style="margin-top: 30px;">
+    <a class="button" href="#" onclick="alert('Applying!');">Join Now!</a>
+  </div>
+</section>
+
+
+
 
   <!-- CONTACT -->
   <section id="contact" class="section contact">
