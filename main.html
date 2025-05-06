@@ -21,7 +21,7 @@
       opacity: 0;
       transform: scale(0.8);
       transform-origin: center center;
-      transition: opacity 2s ease-in-out, transform 2s ease-in-out;
+      transition: opacity 2s ease-in-out;
     }
     .bullet-container.visible,
     .section.plummi:hover .bullet-container {
@@ -102,7 +102,7 @@
     }
 
     .spacer {
-      height: 56px;
+      height: 30px;
       background: transparent;
     }
 
@@ -137,6 +137,7 @@
       margin: 0 auto;
       line-height: 1.8;
     }
+
 
     .hero h2 {
       font-size: 32px;
@@ -179,6 +180,27 @@
     .tab-content.active .bullet-list {
       opacity: 1;
       transform: scale(1);
+    }
+    /* Create a stacking context for toggles */
+    .toggle-tabs {
+      position: relative;
+    }
+
+    /* Ensure buttons float above the slider */
+    .toggle-tabs .tab-btn {
+      position: relative;
+      z-index: 2;
+      color: var(--text-color);
+    }
+
+    /* Slider sits just beneath the buttons */
+    .toggle-tabs .tab-slider {
+      z-index: 1;
+    }
+
+    /* Invert the active tab’s text color so it shows on the slider */
+    .toggle-tabs .tab-btn.active {
+      color: #fff;
     }
 
     .contact {
@@ -231,6 +253,15 @@
       font-size: 18px;
       margin-right: 10px;
     }
+    /* Pink glow on the Home section logo */
+    #home img {
+      filter: drop-shadow(0 0 8px var(--primary-color));
+      transition: filter 0.3s ease-in-out;
+    }
+    #home img:hover {
+      filter: drop-shadow(0 0 16px var(--primary-color));
+    }
+
 
     footer {
       text-align: center;
@@ -257,7 +288,7 @@
   <div class="spacer"></div>
 
   <!-- FIRST SECTION: Large Plummi logo -->
-  <section id="home" style="text-align:center; margin: 60px auto; padding: 90px 0;">
+  <section id="home" style="text-align:center; margin: 30px auto; padding: 100px 0;">
     <div style="margin-bottom:20px;">
       <img src="assets/plumlogo.png" alt="Plummi Logo" width="200" height="200" />
     </div>
@@ -301,35 +332,60 @@
            "></div>
         </div>
 
-        <!-- Tab 1 -->
+        <!-- AFTER -->
         <div id="service1" class="tab-content active" style="margin-top:60px; text-align:left;">
-          <ul class="bullet-list">
-            <li>Find solutions to pressing issues in the industry</li>
-            <li>Curate and enhance an easy user experience with sleek UI</li>
-            <li>Help businesses grow and expand with cutting-edge yet easy-to-use software</li>
-          </ul>
+          <div class="bullet-container">
+            <div class="bullet">
+              <h4>01.</h4>
+              <p>To be rich</p>
+            </div>
+            <div class="bullet">
+              <h4>02.</h4>
+              <p>To have mony</p>
+            </div>
+            <div class="bullet">
+              <h4>03.</h4>
+              <p>jjjjjjjjjjj</p>
+            </div>
+          </div>
         </div>
 
-        <!-- Tab 2 -->
+        <!-- service2 -->
         <div id="service2" class="tab-content" style="margin-top:60px; text-align:left;">
-          <ul class="bullet-list">
-            <li>bruh bruh bruh</li>
-            <li>nernje</li>
-            <li>ehvhed</li>
-          </ul>
+          <div class="bullet-container">
+            <div class="bullet">
+              <h4>01.</h4>
+              <p>Find solutions to pressing issues in the industry</p>
+            </div>
+            <div class="bullet">
+              <h4>02.</h4>
+              <p>Curate and enhance an easy user experience with sleek UI</p>
+            </div>
+            <div class="bullet">
+              <h4>03.</h4>
+              <p>Help businesses grow and expand with cutting-edge yet easy-to-use software</p>
+            </div>
+          </div>
         </div>
 
-        <!-- Tab 3 -->
+        <!-- service3 -->
         <div id="service3" class="tab-content" style="margin-top:60px; text-align:left;">
-          <ul class="bullet-list">
-            <li>Findjnngjrek</li>
-            <li>regjergreg</li>
-            <li>uhhjb</li>
-          </ul>
+          <div class="bullet-container">
+            <div class="bullet">
+              <h4>01.</h4>
+              <p>Findregeredgre</p>
+            </div>
+            <div class="bullet">
+              <h4>02.</h4>
+              <p>Curggerg</p>
+            </div>
+            <div class="bullet">
+              <h4>03.</h4>
+              <p>Help tgrgrtg</p>
+            </div>
+          </div>
         </div>
 
-      </div>
-    </div>
   </section>
 
   <!-- CONTACT -->
@@ -393,6 +449,16 @@
         obs.observe(document.getElementById('plummi'));
       }
     });
+    // On initial load, clear any hash and jump to the top
+    window.addEventListener('load', () => {
+      if (window.location.hash) {
+        // remove the fragment so the browser won’t auto‐scroll next time
+        history.replaceState(null, '', window.location.pathname + window.location.search);
+      }
+      // ensure we’re at the top
+      window.scrollTo(0, 0);
+    });
+
   </script>
 </body>
 </html>
