@@ -16,6 +16,30 @@
       scroll-behavior: smooth;
     }
 
+    /* Fade‐and‐scale effect for Projects bullets */
+    .bullet-container {
+      opacity: 0;
+      transform: scale(0.8);
+      transform-origin: center center;
+      transition: opacity 2s ease-in-out, transform 2s ease-in-out;
+    }
+    .bullet-container.visible,
+    .section.plummi:hover .bullet-container {
+      opacity: 1;
+      transform: scale(1);
+    }
+
+    /* Buttons start hidden & up slightly */
+    #home .button {
+      opacity: 0;
+      transform: translateY(-20px);
+      transition: opacity 1.5s ease, transform 1.5s ease;
+    }
+    #home:hover .button {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
     /* League Spartan font */
     @font-face {
       font-family: 'League Spartan';
@@ -45,6 +69,14 @@
       top: 0;
       width: 100%;
       z-index: 1000;
+      transition: all 0.3s ease-in-out;
+    }
+    header.scrolled {
+      top: 10px;
+      left: 20px;
+      right: 20px;
+      width: auto;
+      border-radius: 30px;
     }
 
     .logo img {
@@ -56,9 +88,7 @@
     header .nav-links {
       display: flex;
       gap: 12px;
-      margin-right: 10px;
     }
-
     header .nav-links a {
       color: var(--text-color);
       text-decoration: none;
@@ -67,7 +97,6 @@
       letter-spacing: 0.5px;
       transition: color 0.3s ease;
     }
-
     header .nav-links a:hover {
       color: var(--primary-color);
     }
@@ -77,7 +106,6 @@
       background: transparent;
     }
 
-    /* Section styling */
     .section {
       text-align: center;
       padding: 150px 30px;
@@ -134,45 +162,23 @@
       color: var(--text-color);
     }
 
-    .what-we-do {
-      display: flex;
-      flex-direction: column;
-      justify-content: space-around;
-      padding: 120px;
-      background-color: var(--bg-color);
-      color: var(--text-color);
-      border-radius: 30px;
-      position: relative;
-    }
-    .what-we-do h3 {
-      position: absolute;
-      top: 20px;
-      left: 40px;
-      font-size: 48px;
-      font-weight: bold;
+    /* Tab panes hide/show */
+    .tab-content { display: none; }
+    .tab-content.active { display: block; }
+
+    /* Service bullets fade & scale */
+    .bullet-list {
+      opacity: 0;
+      transform: scale(0.8);
+      transition: opacity 1s ease, transform 1s ease;
+      list-style: disc;
+      padding-left: 20px;
       margin: 0;
-    }
-    .what-we-do .bullet-container {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: space-evenly;
-    }
-    .what-we-do .bullet {
-      flex: 1;
-      margin: 20px;
       text-align: left;
     }
-    .what-we-do .bullet h4 {
-      font-size: 28px;
-      margin-bottom: 10px;
-    }
-    .what-we-do .bullet p {
-      font-size: 20px;
-      line-height: 1.8;
-    }
-
-    .plummi div[style*="background-color"] {
-      background-color: var(--primary-color) !important;
+    .tab-content.active .bullet-list {
+      opacity: 1;
+      transform: scale(1);
     }
 
     .contact {
@@ -197,11 +203,6 @@
     .contact .left p {
       font-size: 20px;
       margin: 20px 0;
-    }
-    .contact .right {
-      display: flex;
-      flex-direction: column;
-      align-items: flex-start;
     }
     .contact .subscribe {
       display: flex;
@@ -256,62 +257,87 @@
   <div class="spacer"></div>
 
   <!-- FIRST SECTION: Large Plummi logo -->
-  <section id="home" style="text-align:center; margin:80px auto; padding:100px 0;">
+  <section id="home" style="text-align:center; margin: 60px auto; padding: 90px 0;">
     <div style="margin-bottom:20px;">
-      <img src="assets/plumlogo.png" alt="Plummi Logo" width="150" height="150" />
+      <img src="assets/plumlogo.png" alt="Plummi Logo" width="200" height="200" />
     </div>
-    <h2 style="font-size:48px; margin:0; font-weight:normal; color: var(--text-color);">Plummi</h2>
+    <h2 style="font-size:48px; margin:0; font-weight:normal; color: var(--text-color);">plummi</h2>
 
-    <div>
+    <div style="margin-top: 50px;">
       <a href="#plummi" class="button" onclick="scrollToSection('plummi')">Learn More</a>
       <a href="#contact" class="button" onclick="scrollToSection('contact')">Get Started</a>
     </div>
+
   </section>
+  
 
-<!-- PROJECTS section (Plummi) -->
-<section id="plummi" class="section plummi">
-  <h3>Our Service</h3>
-  <div style="display: flex; align-items: flex-start; justify-content: center; gap: 30px;">
-    <div style="max-width: 500px; text-align: left;">
-      <p>
-        Plummi is software designed to help care companies commit to easy care and
-        help automate processes with optimised features:
-      </p>
+  <!-- OUR SERVICES section -->
+  <section id="plummi" class="section plummi">
+    <div style="display:flex; gap:20px; align-items:flex-start;">
 
+      <!-- Left half (empty) -->
+      <div style="flex:1;"></div>
+
+      <!-- Right half -->
+      <div style="flex:1; position:relative;">
+
+        <!-- Title -->
+        <h3 style="margin:0 0 20px 0; text-align:left;">Our Services</h3>
+
+        <!-- Toggle pills -->
+        <div class="toggle-tabs" style="
+             position:absolute; top:0; right:0;
+             display:flex; border:1px solid var(--primary-color);
+             border-radius:30px; overflow:hidden;
+           ">
+          <button class="tab-btn active" data-target="service1" style="flex:1; padding:8px 12px; background:none; border:none; cursor:pointer;">Info 1</button>
+          <button class="tab-btn" data-target="service2" style="flex:1; padding:8px 12px; background:none; border:none; cursor:pointer;">Info 2</button>
+          <button class="tab-btn" data-target="service3" style="flex:1; padding:8px 12px; background:none; border:none; cursor:pointer;">Info 3</button>
+          <div class="tab-slider" style="
+               position:absolute; top:0; left:0;
+               width:calc(100%/3); height:100%;
+               background:var(--primary-color);
+               transition:left 0.3s ease-in-out;
+           "></div>
+        </div>
+
+        <!-- Tab 1 -->
+        <div id="service1" class="tab-content active" style="margin-top:60px; text-align:left;">
+          <ul class="bullet-list">
+            <li>Find solutions to pressing issues in the industry</li>
+            <li>Curate and enhance an easy user experience with sleek UI</li>
+            <li>Help businesses grow and expand with cutting-edge yet easy-to-use software</li>
+          </ul>
+        </div>
+
+        <!-- Tab 2 -->
+        <div id="service2" class="tab-content" style="margin-top:60px; text-align:left;">
+          <ul class="bullet-list">
+            <li>bruh bruh bruh</li>
+            <li>nernje</li>
+            <li>ehvhed</li>
+          </ul>
+        </div>
+
+        <!-- Tab 3 -->
+        <div id="service3" class="tab-content" style="margin-top:60px; text-align:left;">
+          <ul class="bullet-list">
+            <li>Findjnngjrek</li>
+            <li>regjergreg</li>
+            <li>uhhjb</li>
+          </ul>
+        </div>
+
+      </div>
     </div>
-  </div>
-
-  <!-- Stretched What We Do bullets across full section width -->
-  <div class="bullet-container" style="display: flex; justify-content: space-between; flex-wrap: wrap; margin: 40px 0;">
-    <div class="bullet" style="flex: 1; margin: 0 10px; text-align: left;">
-      <h4>01.</h4>
-      <p>Find solutions to pressing issues in the industry</p>
-    </div>
-    <div class="bullet" style="flex: 1; margin: 0 10px; text-align: left;">
-      <h4>02.</h4>
-      <p>Curate and enhance an easy user experience with sleek UI</p>
-    </div>
-    <div class="bullet" style="flex: 1; margin: 0 10px; text-align: left;">
-      <h4>03.</h4>
-      <p>Help businesses grow and expand with cutting-edge yet easy-to-use software</p>
-    </div>
-  </div>
-
-  <div style="margin-top: 30px;">
-    <a class="button" href="#" onclick="alert('Applying!');">Join Now!</a>
-  </div>
-</section>
-
-
-
+  </section>
 
   <!-- CONTACT -->
   <section id="contact" class="section contact">
     <div class="left">
       <h3>Contact Us</h3>
       <p>
-        For any inquiries, please email
-        <a href="mailto:contact@plummi.com" style="color: var(--text-color);">contact@plummi.com</a>.
+        For any inquiries, please email <a href="mailto:contact@plummi.com" style="color: var(--text-color);">contact@plummi.com</a>.
       </p>
     </div>
     <div class="right">
@@ -336,6 +362,37 @@
         block: 'center'
       });
     }
+    // Header morph on scroll
+    window.addEventListener('scroll', () => {
+      const hdr = document.querySelector('header');
+      if (window.scrollY > 50) hdr.classList.add('scrolled'); else hdr.classList.remove('scrolled');
+    });
+
+    // Toggle tabs + slide highlight
+    const tabs = document.querySelectorAll('.tab-btn');
+    const slider = document.querySelector('.tab-slider');
+    tabs.forEach((btn, i) => {
+      btn.addEventListener('click', () => {
+        tabs.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        slider.style.left = `calc((100%/3) * ${i})`;
+        document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+        document.getElementById(btn.dataset.target).classList.add('active');
+      });
+    });
+
+    // Fade-in Projects bullets on scroll into view
+    document.addEventListener('DOMContentLoaded', () => {
+      const bullets = document.querySelector('.bullet-container');
+      if (bullets) {
+        const obs = new IntersectionObserver((entries, observer) => {
+          if (entries[0].isIntersecting) {
+            bullets.classList.add('visible'); observer.disconnect();
+          }
+        }, { threshold: 0.5 });
+        obs.observe(document.getElementById('plummi'));
+      }
+    });
   </script>
 </body>
 </html>
