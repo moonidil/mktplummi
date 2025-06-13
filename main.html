@@ -1,282 +1,580 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1.0" />
   <title>Plummi</title>
   <style>
-    /* Color variables */
-    :root {
-      --primary-color: #F8A39D;
-      --text-color: #000000;
-      --bg-color: #E5E5E5;
-    }
-
-    html {
-      scroll-behavior: smooth;
-    }
-
-    /* Fade‐and‐scale effect for Projects bullets */
-    .bullet-container {
-      opacity: 0;
-      transform: scale(0.8);
-      transform-origin: center center;
-      transition: opacity 2s ease-in-out;
-    }
-    .bullet-container.visible,
-    .section.plummi:hover .bullet-container {
-      opacity: 1;
-      transform: scale(1);
-    }
-
-    /* Buttons start hidden & up slightly */
-    #home .button {
-      opacity: 0;
-      transform: translateY(-20px);
-      transition: opacity 1.5s ease, transform 1.5s ease;
-    }
-    #home:hover .button {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    /* League Spartan font */
+    /* ────────────────────────────────────────────────────────────────────────── */
+    /* 1) FONTS (unchanged) */
     @font-face {
       font-family: 'League Spartan';
+      src: url('../assets/League_Spartan/static/LeagueSpartan-Regular.ttf') format('truetype');
+      font-weight: 400;
+      font-style: normal;
+    }
+    @font-face {
+      font-family: 'League Spartan';
+      src: url('../assets/League_Spartan/static/LeagueSpartan-Bold.ttf') format('truetype');
+      font-weight: 700;
+      font-style: normal;
+    }
+    /* If you’re using the Variable font later on: */
+    @font-face {
+      font-family: 'League Spartan Variable';
       src: url('assets/League_Spartan 5/static/LeagueSpartan-VariableFont_wght.ttf') format('truetype');
       font-weight: 100 900;
       font-display: swap;
     }
 
-    body {
+    /* ────────────────────────────────────────────────────────────────────────── */
+    /* 2) ROOT VARIABLES (UPDATED PALETTE) */
+    :root {
+      /* • Required Pink (brand) */
+      --primary-color:   #F8A39D;
+
+      /* • Secondary accent for hovers / small UI details */
+      --secondary-color: #00796B;
+
+      /* • Neutral backgrounds (light → dark) */
+      --bg-color:        #FAFAFA; /* page background */
+      --light-grey:      #EEEEEE; /* subtle cards / borders */
+
+      /* • Neutral text colors */
+      --text-color:      #2E2E2E; /* primary headings/body */
+      --dark-grey:       #4A4A4A; /* secondary text */
+
+      /* • Pure white / pure black (sparingly) */
+      --white:           #FFFFFF;
+      --black:           #000000;
+    }
+
+    /* Smooth scrolling */
+    html {
+      scroll-behavior: smooth;
+    }
+
+    /* Reset margins/padding */
+    html, body {
       margin: 0;
+      padding: 0;
       font-family: 'League Spartan', sans-serif;
-      color: var(--text-color);
       background-color: var(--bg-color);
-      position: relative;
+      color: var(--text-color);
       overflow-x: hidden;
     }
 
+    /* ────────────────────────────────────────────────────────────────────────── */
+    /* 3) LOGIN PAGE (if you ever use it) */
+    /* We’ve updated the colors so the pink is only an accent, and the page itself
+       is a very light off-white with charcoal text. */
+    .login-page {
+      position: relative;
+      width: 100%;
+      max-width: 1440px;
+      height: 100vh;
+      margin: 0 auto;
+      background: var(--bg-color);
+    }
+    .rectangle-107,
+    .rectangle-108 {
+      width: 600px;
+      height: 50px;
+      background: var(--light-grey);
+      border-radius: 100px;
+    }
+    .rectangle-107 {
+      position: absolute;
+      left: 50%;
+      top: 45%;
+      transform: translateX(-50%);
+    }
+    .rectangle-108 {
+      position: absolute;
+      left: 50%;
+      top: 55%;
+      transform: translateX(-50%);
+    }
+    .username-label,
+    .password-label,
+    .forgot-password,
+    .login-text,
+    .plummi-title,
+    .info-text,
+    .here {
+      font-family: 'League Spartan', sans-serif;
+    }
+    .username-label {
+      position: absolute;
+      top: 40%;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 30px;
+      font-weight: 400;
+      color: var(--text-color);
+    }
+    .password-label {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 30px;
+      font-weight: 400;
+      color: var(--text-color);
+    }
+    .forgot-password {
+      position: absolute;
+      top: 62%;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 20px;
+      font-weight: 400;
+      color: var(--dark-grey);
+    }
+    .component-2 {
+      position: absolute;
+      width: 181px;
+      height: 50px;
+      left: 50%;
+      top: 65%;
+      transform: translateX(-50%);
+    }
+    .rectangle-110 {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      left: 0;
+      top: 0;
+      background: var(--primary-color);
+      border-radius: 100px;
+    }
+    .login-text {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-size: 30px;
+      font-weight: 700;
+      color: var(--white);
+      text-decoration: none;
+      cursor: pointer;
+    }
+    .plummi-title {
+      position: absolute;
+      top: 25%;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 100px;
+      font-weight: 700;
+      line-height: 1;
+      color: var(--text-color);
+      margin: 0;
+      text-align: center;
+    }
+    .info-text {
+      position: absolute;
+      bottom: 10%;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 20px;
+      font-weight: 400;
+      color: var(--text-color);
+      text-align: center;
+    }
+    .here {
+      position: absolute;
+      bottom: 6%;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 20px;
+      font-weight: 400;
+      color: var(--white);
+      background: var(--primary-color);
+      border: none;
+      border-radius: 5px;
+      padding: 8px 16px;
+      cursor: pointer;
+    }
+    .plummi-logo {
+      position: absolute;
+      top: 10%;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 200px;
+      height: 200px;
+    }
+    .username-input,
+    .password-input {
+      width: 100%;
+      height: 100%;
+      background: transparent;
+      border: none;
+      border-radius: 100px;
+      font-family: 'League Spartan', sans-serif;
+      font-size: 16px;
+      padding-left: 20px;
+      box-sizing: border-box;
+      color: var(--text-color);
+    }
+
+    /* ────────────────────────────────────────────────────────────────────────── */
+    /* 4) HEADER (MAIN SITE) */
     header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 5px 20px;
-      background-color: rgba(248, 163, 157, 0.2);
-      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-      backdrop-filter: blur(10px);
       position: fixed;
       top: 0;
       width: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 20px;
+      background-color: var(--white);
+      box-shadow: 0 2px 5px rgba(0,0,0,0.05);
       z-index: 1000;
       transition: all 0.3s ease-in-out;
     }
     header.scrolled {
       top: 10px;
-      left: 20px;
-      right: 20px;
+      left: 10px;
+      right: 10px;
       width: auto;
       border-radius: 30px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
     }
-
-    .logo img {
+    header .logo img {
       width: 60px;
       height: auto;
       cursor: pointer;
+      /* If your logo is already pink, we keep it. If it’s a black outline, it will contrast
+         nicely against this white header. */
     }
-
     header .nav-links {
       display: flex;
-      gap: 12px;
+      gap: 20px;
     }
     header .nav-links a {
       color: var(--text-color);
       text-decoration: none;
       font-size: 14px;
+      font-weight: 600;
       text-transform: uppercase;
       letter-spacing: 0.5px;
       transition: color 0.3s ease;
     }
     header .nav-links a:hover {
-      color: var(--primary-color);
+      color: var(--secondary-color);
+      /* You could also do an underline in pink if you prefer:
+         text-decoration: underline 2px solid var(--primary-color);
+      */
     }
 
+    /* ────────────────────────────────────────────────────────────────────────── */
+    /* 5) SPACER (push content below fixed header) */
     .spacer {
-      height: 30px;
+      height: 60px; /* roughly same as header height */
       background: transparent;
     }
 
-    .section {
+    /* ────────────────────────────────────────────────────────────────────────── */
+    /* 6) HERO SECTION */
+    #home {
       text-align: center;
-      padding: 150px 30px;
-      background-color: var(--bg-color);
+      margin: 30px auto;
+      padding: 100px 20px;
+      max-width: 1000px;
+    }
+    #home h2:first-of-type {
+      font-family: 'League Spartan', sans-serif;
+      font-size: 65px;
+      line-height: 1.2;
+      font-weight: 400;
       color: var(--text-color);
-      margin: 50px auto;
-      max-width: 90%;
-      border-radius: 30px;
-      position: relative;
-      transition: transform 0.8s ease-in-out;
+      margin: 80px auto 20px;
+      white-space: normal; /* ensure wrapping */
     }
-    .section::before {
-      content: "";
-      position: absolute;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
-      border-radius: 30px;
-      box-shadow: 0 0 8px 2px rgba(248, 163, 157, 0.3);
-      z-index: -1;
-      pointer-events: none;
-    }
-    .section h2, .section h3 {
-      font-size: 42px;
-      margin-bottom: 30px;
-    }
-    .section p {
-      font-size: 20px;
-      max-width: 800px;
-      margin: 0 auto;
-      line-height: 1.8;
-    }
-
-
-    .hero h2 {
-      font-size: 32px;
-      font-weight: bold;
+    #home h2:last-of-type {
+      font-family: 'League Spartan', sans-serif;
+      font-size: 65px;
+      margin: 0;
+      font-weight: 400;
       color: var(--text-color);
     }
-
-    .button {
+    #home .button {
       display: inline-block;
-      margin: 20px;
+      margin: 30px 10px 0;
       padding: 12px 50px;
       font-size: 18px;
+      font-weight: 600;
       border: 2px solid var(--primary-color);
       border-radius: 50px;
       text-decoration: none;
       color: var(--text-color);
       background-color: transparent;
       transition: all 0.3s ease;
-      box-shadow: 0 4px 10px var(--primary-color);
+      box-shadow: 0 4px 10px rgba(248,163,157,0.2);
     }
-    .button:hover {
+    #home .button:hover {
       background-color: var(--primary-color);
+      color: var(--white);
+      box-shadow: 0 6px 16px rgba(248,163,157,0.35);
+    }
+
+    /* ────────────────────────────────────────────────────────────────────────── */
+    /* 7) OUR SERVICES SECTION */
+    .section {
+      position: relative;
+      background-color: var(--bg-color);
+      color: var(--text-color);
+      text-align: center;
+      padding: 80px 20px;
+      margin: 50px auto;
+      max-width: 90%;
+      border-radius: 30px;
+      transition: transform 0.8s ease-in-out;
+    }
+    .section::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      border-radius: 30px;
+      box-shadow: 0 0 8px 2px rgba(248, 163, 157, 0.3);
+      z-index: -1;
+      pointer-events: none;
+    }
+    .section h2,
+    .section h3 {
+      font-size: 42px;
+      margin-bottom: 30px;
+      color: var(--text-color);
+    }
+    .section p {
+      font-size: 20px;
+      max-width: 800px;
+      margin: 0 auto;
+      line-height: 1.8;
+      color: var(--dark-grey);
+    }
+    .hero h2 {
+      font-size: 32px;
+      font-weight: bold;
       color: var(--text-color);
     }
 
-    /* Tab panes hide/show */
-    .tab-content { display: none; }
-    .tab-content.active { display: block; }
-
-    /* Service bullets fade & scale */
-    .bullet-list {
-      opacity: 0;
-      transform: scale(0.8);
-      transition: opacity 1s ease, transform 1s ease;
-      list-style: disc;
-      padding-left: 20px;
-      margin: 0;
+    /* Toggle Tabs (pill + slider) */
+    .toggle-tabs {
+      position: relative;
+      display: flex;
+      border: 1px solid var(--primary-color);
+      border-radius: 30px;
+      overflow: hidden;
+      margin-bottom: 20px;
+      width: fit-content;
+    }
+    .toggle-tabs .tab-btn {
+      flex: 1;
+      padding: 8px 16px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      font-size: 16px;
+      font-weight: 600;
+      color: var(--text-color);
+      transition: color 0.3s ease;
+    }
+    .toggle-tabs .tab-btn.active {
+      color: var(--white);
+    }
+    .toggle-tabs .tab-slider {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: calc(100% / 3);
+      height: 100%;
+      background-color: var(--primary-color);
+      transition: left 0.3s ease-in-out;
+      border-radius: 30px;
+    }
+    .tab-content {
+      display: none;
+      margin-top: 40px;
       text-align: left;
     }
-    .tab-content.active .bullet-list {
+    .tab-content.active {
+      display: block;
+    }
+    .bullet-container {
+      opacity: 0;
+      transform: scale(0.8);
+      transform-origin: center;
+      transition: opacity 1s ease, transform 1s ease;
+    }
+    .bullet-container.visible {
       opacity: 1;
       transform: scale(1);
     }
-    /* Create a stacking context for toggles */
-    .toggle-tabs {
-      position: relative;
+    .bullet {
+      display: flex;
+      align-items: flex-start;
+      margin-bottom: 20px;
+    }
+    .bullet h4 {
+      font-size: 24px;
+      font-weight: bold;
+      margin: 0 12px 0 0;
+      color: var(--primary-color);
+    }
+    .bullet p {
+      font-size: 20px;
+      margin: 0;
+      color: var(--dark-grey);
     }
 
-    /* Ensure buttons float above the slider */
-    .toggle-tabs .tab-btn {
-      position: relative;
-      z-index: 2;
-      color: var(--text-color);
-    }
-
-    /* Slider sits just beneath the buttons */
-    .toggle-tabs .tab-slider {
-      z-index: 1;
-    }
-
-    /* Invert the active tab’s text color so it shows on the slider */
-    .toggle-tabs .tab-btn.active {
-      color: #fff;
-    }
-
+    /* ────────────────────────────────────────────────────────────────────────── */
+    /* 8) CONTACT SECTION */
     .contact {
       display: flex;
       flex-wrap: wrap;
       justify-content: space-between;
-      padding: 140px;
-      background-color: var(--bg-color);
+      background-color: var(--white);
       color: var(--text-color);
+      padding: 80px 20px;
+      margin: 50px auto;
+      max-width: 90%;
       border-radius: 20px;
-      position: relative;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    }
+    .contact .left,
+    .contact .right {
+      flex: 1;
+      min-width: 280px;
+      margin: 20px;
     }
     .contact h3 {
       font-size: 42px;
       text-align: left;
-      margin-bottom: 30px;
-    }
-    .contact .left, .contact .right {
-      flex: 1;
-      margin: 40px;
+      margin-bottom: 20px;
+      color: var(--text-color);
     }
     .contact .left p {
       font-size: 20px;
       margin: 20px 0;
+      color: var(--dark-grey);
+    }
+    .contact .left a {
+      color: var(--primary-color);
+      text-decoration: none;
+      font-weight: 600;
+      transition: color 0.3s ease;
+    }
+    .contact .left a:hover {
+      color: var(--secondary-color);
     }
     .contact .subscribe {
       display: flex;
       align-items: center;
-      margin-top: 40px;
+      margin-top: 30px;
     }
     .contact input[type="email"] {
+      flex: 1;
       padding: 12px;
       font-size: 18px;
-      border: 1px solid #ccc;
+      border: 1px solid var(--dark-grey);
       border-radius: 5px;
-      margin-right: 10px;
-      flex: 1;
+      margin-right: 12px;
+      color: var(--text-color);
+      background-color: var(--light-grey);
+      transition: border-color 0.3s ease;
+    }
+    .contact input[type="email"]:focus {
+      outline: none;
+      border-color: var(--primary-color);
     }
     .contact button {
       padding: 12px 25px;
       background-color: var(--primary-color);
       border: none;
-      color: var(--text-color);
+      color: var(--white);
+      font-size: 18px;
+      font-weight: 600;
       border-radius: 5px;
       cursor: pointer;
+      transition: background-color 0.3s ease, box-shadow 0.3s ease;
+      box-shadow: 0 4px 10px rgba(248,163,157,0.2);
+    }
+    .contact button:hover {
+      background-color: #e0737f; /* slightly darker pink */
+      box-shadow: 0 6px 14px rgba(248,163,157,0.35);
     }
     .contact .social-media a {
       text-decoration: underline;
       color: var(--text-color);
       font-size: 18px;
       margin-right: 10px;
+      transition: color 0.3s ease;
     }
-    /* Pink glow on the Home section logo */
+    .contact .social-media a:hover {
+      color: var(--primary-color);
+    }
+
+    /* ────────────────────────────────────────────────────────────────────────── */
+    /* 9) IMAGE HOVER SHADOW (HOME) */
     #home img {
-      filter: drop-shadow(0 0 8px var(--primary-color));
+      filter: drop-shadow(0 0 8px rgba(248,163,157,0.3));
       transition: filter 0.3s ease-in-out;
     }
     #home img:hover {
-      filter: drop-shadow(0 0 16px var(--primary-color));
+      filter: drop-shadow(0 0 16px rgba(248,163,157,0.5));
     }
 
-
+    /* ────────────────────────────────────────────────────────────────────────── */
+    /* 10) FOOTER */
     footer {
       text-align: center;
       padding: 20px;
       background-color: var(--bg-color);
       color: var(--text-color);
       font-size: 16px;
+      margin-top: 50px;
     }
   </style>
 </head>
 <body>
+  <!-- ────────────────────────────────────────────────────────────────────────── -->
+  <!-- HEADER -->
   <header>
-    <div class="logo" onclick="scrollToSection('home')">
-      <img src="assets/plumlogo.png" alt="Plummi Logo" width="60" />
-    </div>
+    <div
+    class="logo"
+    onclick="scrollToSection('home')"
+    style="
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      cursor: pointer;
+    "
+  >
+    <img
+    src="assets/plumlogo.png"
+    alt="Plummi Logo"
+    style="
+      width: 50px;
+      height: auto;
+      filter: drop-shadow(0 0 1px #F8A39D);
+    "
+    />
+    <span
+      style="
+        font-family: 'League Spartan', sans-serif;
+        font-size: 18px;
+        color: var(--text-color);
+        text-transform: lowercase;
+      "
+    >
+      plummi
+    </span>
+  </div>
+  
     <nav>
       <div class="nav-links">
         <a href="#plummi" onclick="scrollToSection('plummi')">Our Service</a>
@@ -287,178 +585,184 @@
 
   <div class="spacer"></div>
 
-  <!-- FIRST SECTION: Large Plummi logo -->
-  <section id="home" style="text-align:center; margin: 30px auto; padding: 100px 0;">
-    <div style="margin-bottom:20px;">
-      <img src="assets/plumlogo.png" alt="Plummi Logo" width="200" height="200" />
-    </div>
-    <h2 style="font-size:48px; margin:0; font-weight:normal; color: var(--text-color);">plummi</h2>
+  <!-- ────────────────────────────────────────────────────────────────────────── -->
+  <!-- HERO / HOME SECTION -->
+  <section id="home">
+    <h2>
+      The All-in-One Platform for Modern Homecare
 
-    <div style="margin-top: 50px;">
+    
+    </h2>
+
+    <div>
       <a href="#plummi" class="button" onclick="scrollToSection('plummi')">Learn More</a>
       <a href="#contact" class="button" onclick="scrollToSection('contact')">Get Started</a>
     </div>
-
-  </section>
-  
-
-  <!-- OUR SERVICES section -->
-  <section id="plummi" class="section plummi">
-    <div style="display:flex; gap:20px; align-items:flex-start;">
-
-      <!-- Left half (empty) -->
-      <div style="flex:1;"></div>
-
-      <!-- Right half -->
-      <div style="flex:1; position:relative;">
-
-        <!-- Title -->
-        <h3 style="margin:0 0 20px 0; text-align:left;">Our Services</h3>
-
-        <!-- Toggle pills -->
-        <div class="toggle-tabs" style="
-             position:absolute; top:0; right:0;
-             display:flex; border:1px solid var(--primary-color);
-             border-radius:30px; overflow:hidden;
-           ">
-          <button class="tab-btn active" data-target="service1" style="flex:1; padding:8px 12px; background:none; border:none; cursor:pointer;">Info 1</button>
-          <button class="tab-btn" data-target="service2" style="flex:1; padding:8px 12px; background:none; border:none; cursor:pointer;">Info 2</button>
-          <button class="tab-btn" data-target="service3" style="flex:1; padding:8px 12px; background:none; border:none; cursor:pointer;">Info 3</button>
-          <div class="tab-slider" style="
-               position:absolute; top:0; left:0;
-               width:calc(100%/3); height:100%;
-               background:var(--primary-color);
-               transition:left 0.3s ease-in-out;
-           "></div>
-        </div>
-
-        <!-- AFTER -->
-        <div id="service1" class="tab-content active" style="margin-top:60px; text-align:left;">
-          <div class="bullet-container">
-            <div class="bullet">
-              <h4>01.</h4>
-              <p>To be rich</p>
-            </div>
-            <div class="bullet">
-              <h4>02.</h4>
-              <p>To have mony</p>
-            </div>
-            <div class="bullet">
-              <h4>03.</h4>
-              <p>jjjjjjjjjjj</p>
-            </div>
-          </div>
-        </div>
-
-        <!-- service2 -->
-        <div id="service2" class="tab-content" style="margin-top:60px; text-align:left;">
-          <div class="bullet-container">
-            <div class="bullet">
-              <h4>01.</h4>
-              <p>Find solutions to pressing issues in the industry</p>
-            </div>
-            <div class="bullet">
-              <h4>02.</h4>
-              <p>Curate and enhance an easy user experience with sleek UI</p>
-            </div>
-            <div class="bullet">
-              <h4>03.</h4>
-              <p>Help businesses grow and expand with cutting-edge yet easy-to-use software</p>
-            </div>
-          </div>
-        </div>
-
-        <!-- service3 -->
-        <div id="service3" class="tab-content" style="margin-top:60px; text-align:left;">
-          <div class="bullet-container">
-            <div class="bullet">
-              <h4>01.</h4>
-              <p>Findregeredgre</p>
-            </div>
-            <div class="bullet">
-              <h4>02.</h4>
-              <p>Curggerg</p>
-            </div>
-            <div class="bullet">
-              <h4>03.</h4>
-              <p>Help tgrgrtg</p>
-            </div>
-          </div>
-        </div>
-
   </section>
 
-  <!-- CONTACT -->
-  <section id="contact" class="section contact">
+  <!-- ────────────────────────────────────────────────────────────────────────── -->
+  <!-- OUR SERVICES SECTION -->
+  <section
+    id="plummi"
+    class="section plummi"
+    style="
+      max-width: 1000px;
+      padding: 80px 20px;
+      margin: 50px auto;
+    "
+  >
+    <h3 style="text-align: left; margin-bottom: 40px;">Our Services</h3>
+
+    <div style="display: flex; justify-content: center; margin-bottom: 40px;">
+      <div class="toggle-tabs">
+        <button class="tab-btn active" data-target="service1">Info 1</button>
+        <button class="tab-btn" data-target="service2">Info 2</button>
+        <button class="tab-btn" data-target="service3">Info 3</button>
+        <div class="tab-slider"></div>
+      </div>
+    </div>
+
+    <div id="service1" class="tab-content active">
+      <div class="bullet-container">
+        <div class="bullet">
+          <h4>01.</h4>
+          <p>To be rich</p>
+        </div>
+        <div class="bullet">
+          <h4>02.</h4>
+          <p>To have money</p>
+        </div>
+        <div class="bullet">
+          <h4>03.</h4>
+          <p>jjjjjjjjjjj</p>
+        </div>
+      </div>
+    </div>
+
+    <div id="service2" class="tab-content">
+      <div class="bullet-container">
+        <div class="bullet">
+          <h4>01.</h4>
+          <p>Find solutions to pressing issues in the industry</p>
+        </div>
+        <div class="bullet">
+          <h4>02.</h4>
+          <p>Curate and enhance an easy user experience with sleek UI</p>
+        </div>
+        <div class="bullet">
+          <h4>03.</h4>
+          <p>Help businesses grow and expand with cutting-edge yet easy-to-use software</p>
+        </div>
+      </div>
+    </div>
+
+    <div id="service3" class="tab-content">
+      <div class="bullet-container">
+        <div class="bullet">
+          <h4>01.</h4>
+          <p>Findregeredgre</p>
+        </div>
+        <div class="bullet">
+          <h4>02.</h4>
+          <p>Curggerg</p>
+        </div>
+        <div class="bullet">
+          <h4>03.</h4>
+          <p>Help tgrgrtg</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ────────────────────────────────────────────────────────────────────────── -->
+  <!-- CONTACT SECTION -->
+  <section id="contact" class="contact">
     <div class="left">
       <h3>Contact Us</h3>
       <p>
-        For any inquiries, please email <a href="mailto:contact@plummi.com" style="color: var(--text-color);">contact@plummi.com</a>.
+        For any inquiries, please email
+        <a href="mailto:contact@plummi.com">contact@plummi.com</a>.
       </p>
+      <div class="social-media" style="margin-top: 20px;">
+        <!-- Example social icons -->
+        <!--
+        <a href="#" target="_blank">Facebook</a>
+        <a href="#" target="_blank">Twitter</a>
+        <a href="#" target="_blank">LinkedIn</a>
+        -->
+      </div>
     </div>
     <div class="right">
       <div class="subscribe">
-        <input type="email" id="email" placeholder="Enter your email">
+        <input
+          type="email"
+          id="email"
+          placeholder="Enter your email"
+        />
         <button type="button">Subscribe</button>
-      </div>
-      <div class="social-media">
-        <!-- Social links & icons here if needed -->
       </div>
     </div>
   </section>
 
+  <!-- ────────────────────────────────────────────────────────────────────────── -->
+  <!-- FOOTER -->
   <footer>
     &copy; 2025 Plummi. All rights reserved.
   </footer>
 
+  <!-- ────────────────────────────────────────────────────────────────────────── -->
+  <!-- JAVASCRIPT -->
   <script>
+    // Smooth scroll helper
     function scrollToSection(sectionId) {
       document.getElementById(sectionId).scrollIntoView({
         behavior: 'smooth',
-        block: 'center'
+        block: 'center',
       });
     }
+
     // Header morph on scroll
     window.addEventListener('scroll', () => {
       const hdr = document.querySelector('header');
-      if (window.scrollY > 50) hdr.classList.add('scrolled'); else hdr.classList.remove('scrolled');
+      if (window.scrollY > 50) hdr.classList.add('scrolled');
+      else hdr.classList.remove('scrolled');
     });
 
-    // Toggle tabs + slide highlight
+    // Toggle tabs + slider
     const tabs = document.querySelectorAll('.tab-btn');
     const slider = document.querySelector('.tab-slider');
     tabs.forEach((btn, i) => {
       btn.addEventListener('click', () => {
         tabs.forEach(b => b.classList.remove('active'));
         btn.classList.add('active');
-        slider.style.left = `calc((100%/3) * ${i})`;
+        slider.style.left = `calc((100% / 3) * ${i})`;
         document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
         document.getElementById(btn.dataset.target).classList.add('active');
       });
     });
 
-    // Fade-in Projects bullets on scroll into view
+    // Fade in bullets when .section#plummi scrolls into view
     document.addEventListener('DOMContentLoaded', () => {
-      const bullets = document.querySelector('.bullet-container');
-      if (bullets) {
-        const obs = new IntersectionObserver((entries, observer) => {
-          if (entries[0].isIntersecting) {
-            bullets.classList.add('visible'); observer.disconnect();
+      const bullets = document.querySelectorAll('.bullet-container');
+      const observer = new IntersectionObserver((entries, obs) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+            obs.unobserve(entry.target);
           }
-        }, { threshold: 0.5 });
-        obs.observe(document.getElementById('plummi'));
-      }
-    });
-    // On initial load, clear any hash and jump to the top
-    window.addEventListener('load', () => {
-      if (window.location.hash) {
-        // remove the fragment so the browser won’t auto‐scroll next time
-        history.replaceState(null, '', window.location.pathname + window.location.search);
-      }
-      // ensure we’re at the top
-      window.scrollTo(0, 0);
+        });
+      }, { threshold: 0.5 });
+
+      bullets.forEach(bc => observer.observe(bc));
     });
 
+    // On initial load, remove any hash so the browser doesn’t auto-scroll next time
+    window.addEventListener('load', () => {
+      if (window.location.hash) {
+        history.replaceState(null, '', window.location.pathname + window.location.search);
+      }
+      window.scrollTo(0, 0);
+    });
   </script>
 </body>
 </html>
