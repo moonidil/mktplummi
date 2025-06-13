@@ -53,6 +53,51 @@
     html {
       scroll-behavior: smooth;
     }
+    .testimonial-wrapper {
+    overflow: hidden;
+    position: relative;
+    max-width: 100%;
+    height: 240px;
+    margin: auto;
+  }
+
+  .testimonial-slider {
+    display: flex;
+    gap: 30px;
+    animation: none;
+    transition: transform 0.5s ease-in-out;
+  }
+
+  .testimonial {
+    flex: 0 0 300px;
+    background: var(--white);
+    padding: 30px;
+    border-radius: 20px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    text-align: left;
+  }
+
+  .testimonial p {
+    font-style: italic;
+    margin-bottom: 10px;
+    font-size: 16px;
+  }
+
+  .testimonial strong {
+    font-weight: 600;
+    font-size: 14px;
+    color: var(--text-color);
+  }
+
+  /* Scroll animation on hover */
+  .testimonial-wrapper:hover .testimonial-slider {
+    animation: scrollLoop 20s linear infinite;
+  }
+
+  @keyframes scrollLoop {
+    0%   { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
 
     /* Reset margins/padding */
     html, body {
@@ -650,41 +695,65 @@
         transition: transform 0.3s ease;
       " onmouseover="this.style.transform='scale(1.03)'" onmouseout="this.style.transform='scale(1)'">
         <img src="assets/icon-health.png" alt="Symptoms Icon" style="width: 50px; margin-bottom: 15px;" />
-        <h4>Symptom Tracking</h4>
+        <h4>Symptom Logging</h4>
         <p>Log and monitor patient symptoms for smarter, more personalised care.</p>
       </div>
     </div>
   </section>
   
-  <!-- ────────────────────────────────────────────────────────────────────────── -->
-  <!-- CONTACT SECTION -->
   <section id="contact" class="contact">
     <div class="left">
-      <h3>Contact Us</h3>
-      <p>
-        For any inquiries, please email
-        <a href="mailto:contact@plummi.com">contact@plummi.com</a>.
-      </p>
-      <div class="social-media" style="margin-top: 20px;">
-        <!-- Example social icons -->
-        <!--
-        <a href="#" target="_blank">Facebook</a>
-        <a href="#" target="_blank">Twitter</a>
+      <h3>Explore How Plummi Can Help You</h3>
+      <p>Have questions about Plummi or want to schedule a demo? Reach out, we're here to help.</p>
+      <p>Email us at <a href="mailto:contact@plummi.com">contact@plummi.com</a> or follow us:</p>
+      <div class="social-media" style="margin-top: 15px;">
         <a href="#" target="_blank">LinkedIn</a>
-        -->
+        <a href="#" target="_blank">Twitter</a>
       </div>
     </div>
     <div class="right">
+      <h4>Subscribe for Updates</h4>
+      <p style="margin-bottom: 20px; color: var(--dark-grey);">Get occasional updates about product releases and tips for care businesses.</p>
       <div class="subscribe">
-        <input
-          type="email"
-          id="email"
-          placeholder="Enter your email"
-        />
+        <input type="email" id="email" placeholder="Enter your email" />
         <button type="button">Subscribe</button>
       </div>
     </div>
   </section>
+  <section class="section" style="max-width: 100%; overflow: hidden; text-align: center;">
+    <h3 style="margin-bottom: 40px;">What Our Users Say</h3>
+    <div class="testimonial-wrapper">
+      <div class="testimonial-slider">
+        <!-- Duplicate set for seamless looping -->
+        <div class="testimonial">
+          <p>“Plummi changed how we manage staff communication. Symptom logging is a game-changer.”</p>
+          <strong>lelelelelele</strong>
+        </div>
+        <div class="testimonial">
+          <p>“Ive finally found my oyster with plummi!!.”</p>
+          <strong>mohammed mohammed</strong>
+        </div>
+        <div class="testimonial">
+          <p>“Families enjoy real-time updates. The guardian portal sets us apart.”</p>
+          <strong>Carec</strong>
+        </div>
+        <!-- Repeat for loop -->
+        <div class="testimonial">
+          <p>“Plummi changed how we manage staff communication. Symptom logging is  game-changer.”</p>
+          <strong>Birdie</strong>
+        </div>
+        <div class="testimonial">
+          <p>“It’s so much easier to manage invoices now. Carers feel more connected.”</p>
+          <strong>James T., Harmony Homecare</strong>
+        </div>
+        <div class="testimonial">
+          <p>“Families love real-time updates. The guardian portal sets us apart.”</p>
+          <strong>Carec</strong>
+        </div>
+      </div>
+    </div>
+  </section>
+  
 
   <!-- ────────────────────────────────────────────────────────────────────────── -->
   <!-- FOOTER -->
