@@ -600,80 +600,62 @@
     </div>
   </section>
 
-  <!-- ────────────────────────────────────────────────────────────────────────── -->
-  <!-- OUR SERVICES SECTION -->
-  <section
-    id="plummi"
-    class="section plummi"
-    style="
-      max-width: 1000px;
-      padding: 80px 20px;
-      margin: 50px auto;
-    "
-  >
+  <section id="plummi" class="section plummi" style="max-width: 1000px;">
     <h3 style="text-align: left; margin-bottom: 40px;">Our Services</h3>
-
-    <div style="display: flex; justify-content: center; margin-bottom: 40px;">
-      <div class="toggle-tabs">
-        <button class="tab-btn active" data-target="service1">Info 1</button>
-        <button class="tab-btn" data-target="service2">Info 2</button>
-        <button class="tab-btn" data-target="service3">Info 3</button>
-        <div class="tab-slider"></div>
+  
+    <div style="
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 30px;
+    ">
+      <!-- Card 1 -->
+      <div style="
+        flex: 1 1 250px;
+        background: var(--white);
+        padding: 30px;
+        border-radius: 20px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+        text-align: center;
+        transition: transform 0.3s ease;
+      " onmouseover="this.style.transform='scale(1.03)'" onmouseout="this.style.transform='scale(1)'">
+        <img src="assets/icon-calendar.png" alt="Calendar Icon" style="width: 50px; margin-bottom: 15px;" />
+        <h4>Real-Time Scheduling</h4>
+        <p>Plan and view care shifts in one shared calendar. Carers and patients stay synced.</p>
       </div>
-    </div>
-
-    <div id="service1" class="tab-content active">
-      <div class="bullet-container">
-        <div class="bullet">
-          <h4>01.</h4>
-          <p>To be rich</p>
-        </div>
-        <div class="bullet">
-          <h4>02.</h4>
-          <p>To have money</p>
-        </div>
-        <div class="bullet">
-          <h4>03.</h4>
-          <p>jjjjjjjjjjj</p>
-        </div>
+  
+      <!-- Card 2 -->
+      <div style="
+        flex: 1 1 250px;
+        background: var(--white);
+        padding: 30px;
+        border-radius: 20px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+        text-align: center;
+        transition: transform 0.3s ease;
+      " onmouseover="this.style.transform='scale(1.03)'" onmouseout="this.style.transform='scale(1)'">
+        <img src="assets/icon-money.png" alt="Payments Icon" style="width: 50px; margin-bottom: 15px;" />
+        <h4>Fast Payments</h4>
+        <p>Track and process payments with transparency for both businesses and carers.</p>
       </div>
-    </div>
-
-    <div id="service2" class="tab-content">
-      <div class="bullet-container">
-        <div class="bullet">
-          <h4>01.</h4>
-          <p>Find solutions to pressing issues in the industry</p>
-        </div>
-        <div class="bullet">
-          <h4>02.</h4>
-          <p>Curate and enhance an easy user experience with sleek UI</p>
-        </div>
-        <div class="bullet">
-          <h4>03.</h4>
-          <p>Help businesses grow and expand with cutting-edge yet easy-to-use software</p>
-        </div>
-      </div>
-    </div>
-
-    <div id="service3" class="tab-content">
-      <div class="bullet-container">
-        <div class="bullet">
-          <h4>01.</h4>
-          <p>Findregeredgre</p>
-        </div>
-        <div class="bullet">
-          <h4>02.</h4>
-          <p>Curggerg</p>
-        </div>
-        <div class="bullet">
-          <h4>03.</h4>
-          <p>Help tgrgrtg</p>
-        </div>
+  
+      <!-- Card 3 -->
+      <div style="
+        flex: 1 1 250px;
+        background: var(--white);
+        padding: 30px;
+        border-radius: 20px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+        text-align: center;
+        transition: transform 0.3s ease;
+      " onmouseover="this.style.transform='scale(1.03)'" onmouseout="this.style.transform='scale(1)'">
+        <img src="assets/icon-health.png" alt="Symptoms Icon" style="width: 50px; margin-bottom: 15px;" />
+        <h4>Symptom Tracking</h4>
+        <p>Log and monitor patient symptoms for smarter, more personalised care.</p>
       </div>
     </div>
   </section>
-
+  
   <!-- ────────────────────────────────────────────────────────────────────────── -->
   <!-- CONTACT SECTION -->
   <section id="contact" class="contact">
